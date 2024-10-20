@@ -1,3 +1,6 @@
+let humanScore = 0;
+let computerScore = 0;
+
 getComputerChoice = () => {
   let randomChoice = Math.random();
   if (randomChoice >= 0 && randomChoice < 1 / 3) {
