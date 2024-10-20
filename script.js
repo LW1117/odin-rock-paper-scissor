@@ -1,10 +1,10 @@
-aiChoice = () => {
+getComputerChoice = () => {
   let randomChoice = Math.random();
   if (randomChoice >= 0 && randomChoice < 1 / 3) {
-    return "Rock";
+    return "rock";
   } else if (randomChoice >= 1 / 3 && randomChoice < 2 / 3) {
-    return "Paper";
+    return "paper";
   } else {
-    return "Scissor";
+    return "scissors";
   }
 };
