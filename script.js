@@ -8,3 +8,12 @@ getComputerChoice = () => {
     return "scissors";
   }
 };
+
+getHumanChoice = () => {
+  const choice = prompt("Enter your choice (rock, paper or scissors): ");
+  if (choice == "rock" || choice == "paper" || choice == "scissors") {
+    return choice;
+  }
+  alert("Wrong Choice!!");
+  return getHumanChoice();
+};
