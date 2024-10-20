@@ -20,3 +20,28 @@ getHumanChoice = () => {
   alert("Wrong Choice!!");
   return getHumanChoice();
 };
+
+playRound = (humanChoice, computerChoice) => {
+  if (humanChoice == computerChoice) {
+    console.log(`Its a draw!`);
+    return 0;
+  }
+  if (humanChoice == "rock" && computerChoice == "scissors") {
+    console.log(`You win! ${humanChoice} beats ${computerChoice}`);
+    humanScore += 1;
+    return 0;
+  }
+  if (humanChoice == "paper" && computerChoice == "rock") {
+    console.log(`You win! ${humanChoice} beats ${computerChoice}`);
+    humanScore += 1;
+    return 0;
+  }
+  if (humanChoice == "scissors" && computerChoice == "paper") {
+    console.log(`You win! ${humanChoice} beats ${computerChoice}`);
+    humanScore += 1;
+    return 0;
+  }
+  console.log(`You lose! ${computerChoice} beats ${humanChoice}`);
+  computerScore += 1;
+  return 0;
+};
