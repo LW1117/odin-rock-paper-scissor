@@ -13,7 +13,8 @@ getComputerChoice = () => {
 };
 
 getHumanChoice = () => {
-  const choice = prompt("Enter your choice (rock, paper or scissors): ");
+  let choice = prompt("Enter your choice (rock, paper or scissors): ");
+  choice = choice.toLowerCase();
   if (choice == "rock" || choice == "paper" || choice == "scissors") {
     return choice;
   }
@@ -45,3 +46,11 @@ playRound = (humanChoice, computerChoice) => {
   computerScore += 1;
   return 0;
 };
+
+playRound(getHumanChoice(), getComputerChoice());
+
+console.log("Current Score\n");
+console.log("----------------\n");
+console.log(`Player: ${humanScore}\n`);
+console.log(`Computer: ${computerScore}\n`);
+console.log("----------------\n");
