@@ -1,43 +1,28 @@
 let humanScore = 0;
 let computerScore = 0;
 
-playGame = () => {
-  for (let i = 0; i < 5; i += 1) {
-    console.log("----------------\n");
-    console.log("----------------\n");
-    playRound(getHumanChoice(), getComputerChoice());
-    console.log("Current Score\n");
-    console.log("----------------\n");
-    console.log(`Player: ${humanScore}\n`);
-    console.log(`Computer: ${computerScore}\n`);
-  }
-  if (humanScore > computerScore) alert("You WIN!!!");
-  else alert("You LOST!!!");
-};
+let playCount = 0;
+let results = ``;
+let scoreText = ``;
 
 playRound = (humanChoice, computerChoice) => {
   if (humanChoice == computerChoice) {
-    console.log(`Its a draw!`);
-    return 0;
+    return `Its a draw!`;
   }
   if (humanChoice == "rock" && computerChoice == "scissors") {
-    console.log(`You win! ${humanChoice} beats ${computerChoice}`);
     humanScore += 1;
-    return 0;
+    return `You win! ${humanChoice} beats ${computerChoice}`;
   }
   if (humanChoice == "paper" && computerChoice == "rock") {
-    console.log(`You win! ${humanChoice} beats ${computerChoice}`);
     humanScore += 1;
-    return 0;
+    return `You win! ${humanChoice} beats ${computerChoice}`;
   }
   if (humanChoice == "scissors" && computerChoice == "paper") {
-    console.log(`You win! ${humanChoice} beats ${computerChoice}`);
     humanScore += 1;
-    return 0;
+    return `You win! ${humanChoice} beats ${computerChoice}`;
   }
-  console.log(`You lose! ${computerChoice} beats ${humanChoice}`);
   computerScore += 1;
-  return 0;
+  return `You lose! ${computerChoice} beats ${humanChoice}`;
 };
 
 getComputerChoice = () => {
@@ -61,4 +46,33 @@ getHumanChoice = () => {
   return getHumanChoice();
 };
 
-playGame();
+const buttons = document.querySelectorAll(".button");
+const resultsDiv = document.getElementById("results");
+const scoreDiv = document.getElementById("score");
+
+scoreDiv.textContent = scoreText;
+
+playGame = (choice) => {
+  results = ``;
+  results = playRound(choice, getComputerChoice());
+  resultsDiv.textContent = results;
+  scoreText = `\nCurrent Score\nPlayer: ${humanScore}\nComputer: ${computerScore}\n`;
+  playCount += 1;
+  if (playCount > 5) {
+    if (humanScore > computerScore) {
+      scoreText += `You WIN!!`;
+    } else {
+      scoreText += `Yos LOST!!`;
+    }
+    alert(scoreText);
+    playCount = 0;
+    humanScore = 0;
+    computerScore = 0;
+  }
+  scoreText = `\nCurrent Score\nPlayer: ${humanScore}\nComputer: ${computerScore}\n`;
+  scoreDiv.textContent = scoreText;
+};
+
+buttons.forEach((button) => {
+  button.addEventListener("click", () => playGame(button.id));
+});
