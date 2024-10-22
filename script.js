@@ -11,18 +11,18 @@ playRound = (humanChoice, computerChoice) => {
   }
   if (humanChoice == "rock" && computerChoice == "scissors") {
     humanScore += 1;
-    return `You win! ${humanChoice} beats ${computerChoice}`;
+    return `${humanChoice.toUpperCase()} beats ${computerChoice.toUpperCase()}`;
   }
   if (humanChoice == "paper" && computerChoice == "rock") {
     humanScore += 1;
-    return `You win! ${humanChoice} beats ${computerChoice}`;
+    return `${humanChoice.toUpperCase()} beats ${computerChoice.toUpperCase()}`;
   }
   if (humanChoice == "scissors" && computerChoice == "paper") {
     humanScore += 1;
-    return `You win! ${humanChoice} beats ${computerChoice}`;
+    return `${humanChoice.toUpperCase()} beats ${computerChoice.toUpperCase()}`;
   }
   computerScore += 1;
-  return `You lose! ${computerChoice} beats ${humanChoice}`;
+  return `${computerChoice.toUpperCase()} beats ${humanChoice.toUpperCase()}`;
 };
 
 getComputerChoice = () => {
@@ -49,22 +49,23 @@ getHumanChoice = () => {
 const buttons = document.querySelectorAll(".button");
 const resultsDiv = document.getElementById("results");
 const scoreDiv = document.getElementById("score");
+const finalResults = document.getElementById("final-results");
 
 scoreDiv.textContent = scoreText;
 
 playGame = (choice) => {
   results = ``;
+  finalResults.textContent = ``;
   results = playRound(choice, getComputerChoice());
   resultsDiv.textContent = results;
   scoreText = `\nCurrent Score\nPlayer: ${humanScore}\nComputer: ${computerScore}\n`;
   playCount += 1;
   if (playCount > 5) {
     if (humanScore > computerScore) {
-      scoreText += `You WIN!!`;
+      finalResults.textContent = `You WIN!!`;
     } else {
-      scoreText += `Yos LOST!!`;
+      finalResults.textContent = `You LOST!!`;
     }
-    alert(scoreText);
     playCount = 0;
     humanScore = 0;
     computerScore = 0;
